@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Context\SharedKernel\Application\Service\Http;
+namespace App\Context\SharedKernel\Domain\Controller;
 
 final class Request
 {

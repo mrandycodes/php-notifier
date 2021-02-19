@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Context\SharedKernel\Application\Service\Http;
+namespace App\Context\SharedKernel\Domain\Controller;
 
 final class ApiHttpOkResponse extends Response
 {

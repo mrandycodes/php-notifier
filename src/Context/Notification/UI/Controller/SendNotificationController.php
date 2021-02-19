@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Context\Notification\UI\Controller;
 
 use App\Context\Notification\Application\Send\NotificationParamHolder;
-use App\Context\SharedKernel\Application\Service\Http\ApiHttpOkResponse;
-use App\Context\SharedKernel\Application\Service\Http\Request;
-use App\Context\SharedKernel\Application\Service\Http\Response;
+use App\Context\SharedKernel\Domain\Controller\Request;
+use App\Context\SharedKernel\Domain\Controller\Response;
+use App\Context\SharedKernel\Domain\Controller\ApiHttpOkResponse;
 
 final class SendNotificationController
 {

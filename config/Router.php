@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Context\SharedKernel\Application\Service\Http\Routing;
+namespace Config;
 
-use App\Context\SharedKernel\Application\Service\Http\Request;
+use App\Context\SharedKernel\Domain\Controller\Request;
 use InvalidArgumentException;
 
 final class Router
