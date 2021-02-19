@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  api:
+      container_name: notifier-api
+      image: nginx:alpine
+      ports:
+        - '8181:80'
+      volumes:
+        - .:/var/www/html
+        - ./resourses/docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      depends_on:
+        - php-fpm
+
+  php-fpm:
+      container_name: notifier-php
+      build: resourses/docker/php-fpm
+      volumes:
+        - .:/var/www/html

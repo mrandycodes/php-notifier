@@ -1,0 +1,21 @@
+{
+    "name": "app/notifier",
+    "description": "Simple php notifier",
+    "authors": [
+        {
+            "name": "Andy",
+            "email": "andres.dazai@outlook.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.4",
+        "manelpm10/php-value-objects": "dev-master",
+        "phpmailer/phpmailer": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}
