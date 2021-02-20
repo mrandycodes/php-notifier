@@ -4,10 +4,10 @@ namespace App\Context\SharedKernel\Domain\Controller;
 
 use App\Context\SharedKernel\Infrastructure\Http\Response;
 
-final class ApiHttpOkResponse extends Response
+final class ApiHttpNotFoundResponse extends Response
 {
-    public function __construct()
+    public function __construct($data)
     {
-        parent::__construct([], 200);
+        parent::__construct($data, 404);
     }
 }

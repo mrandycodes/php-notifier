@@ -11,12 +11,12 @@
     "require": {
         "php": ">=7.4",
         "manelpm10/php-value-objects": "dev-master",
-        "phpmailer/phpmailer": "dev-master"
+        "phpmailer/phpmailer": "dev-master",
+        "php-di/php-di": "dev-master"
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/",
-            "Config\\": "config/"
+            "App\\": "src/"
         }
     }
 }
