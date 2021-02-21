@@ -20,5 +20,6 @@ final class EmailNotifierService implements NotifierInterface
     public function send(Notification $notification): void
     {
         $this->client->init();
+        //ToDo send email
     }
 }

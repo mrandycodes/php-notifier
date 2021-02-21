@@ -10,14 +10,16 @@ use InvalidArgumentException;
 final class NotificationType extends StringValueObject
 {
     private const TELEGRAM_NOTIFICATION_TYPE = 'telegram';
+    private const EMAIL_NOTIFICATION_TYPE = 'email';
 
     private const ALLOWED_TYPES = [
         self::TELEGRAM_NOTIFICATION_TYPE,
+        self::EMAIL_NOTIFICATION_TYPE,
     ];
 
     private function __construct(string $value)
     {
-        $this->guard($value);
+        $this->validate($value);
 
         parent::__construct($value);
     }
@@ -27,7 +29,7 @@ final class NotificationType extends StringValueObject
         return new self($value);
     }
 
-    protected function guard($value): void
+    private function validate($value): void
     {
         if (!in_array($value, self::ALLOWED_TYPES)) {
             throw new InvalidArgumentException(

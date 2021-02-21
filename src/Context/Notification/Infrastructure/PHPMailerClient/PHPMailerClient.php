@@ -19,6 +19,7 @@ final class PHPMailerClient
 
     public function init(): void
     {
+        //ToDo: use DotEnv or DI to asign varibles from .env
         try {
             $this->client->SMTPDebug = SMTP::DEBUG_SERVER;
             $this->client->isSMTP();

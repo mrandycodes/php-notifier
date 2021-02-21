@@ -8,4 +8,8 @@ use App\Context\SharedKernel\Domain\ValueObjects\UuidValueObject;
 
 final class NotificationId extends UuidValueObject
 {
+    public static function generate(): self
+    {
+        return new self(parent::generate()->value());
+    }
 }

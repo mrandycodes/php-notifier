@@ -4,30 +4,26 @@ declare(strict_types=1);
 
 namespace App\Context\SharedKernel\Infrastructure\Routing;
 
-use App\Context\SharedKernel\Domain\Controller\ApiHttpNotFoundResponse;
+use App\Context\SharedKernel\Domain\Controller\ApiHttpBadRequestResponse;
 use App\Context\SharedKernel\Infrastructure\Http\Request;
 use InvalidArgumentException;
+use Psr\Container\ContainerInterface;
 
 final class Router
 {
-    private const METHOD_KEY = 'method';
-    private const PATH_KEY = 'path';
-    private const CONTROLLER_CLASS_NAME_KEY = 'controller';
+    public const METHOD_KEY = 'method';
+    public const PATH_KEY = 'path';
+    public const CONTROLLER_CLASS_NAME_KEY = 'controller';
 
     private array $routes;
+    private ContainerInterface $containerInterface;
 
-    public function __construct()
-    {
-        $this->routes = [];
-    }
-
-    public function add(string $method, string $path, string $controller): void
-    {
-        $this->routes[] = [
-            self::METHOD_KEY => $method,
-            self::PATH_KEY => $path,
-            self::CONTROLLER_CLASS_NAME_KEY =>  $controller
-        ];
+    public function __construct(
+        array $routes,
+        ContainerInterface $containerInterface
+    ) {
+        $this->routes = $routes;
+        $this->containerInterface = $containerInterface;
     }
 
     public function execute(): void
@@ -48,12 +44,12 @@ final class Router
                 );
             }
 
-            $controllerClassName = $routesFiltered[0][self::CONTROLLER_CLASS_NAME_KEY];
-            $class = new $controllerClassName();
+            $controller = $this->containerInterface->get($routesFiltered[0][self::CONTROLLER_CLASS_NAME_KEY]);
+            $request = $this->containerInterface->get(Request::class);
 
-            echo (call_user_func_array([$class, '__invoke'], [new Request()]))->result();
+            echo $controller->__invoke($request)->result();
         } catch (InvalidArgumentException $ex) {
-            echo (call_user_func_array([new ApiHttpNotFoundResponse($ex->getMessage()), 'result'], []));
+            echo (new ApiHttpBadRequestResponse($ex->getMessage()))->result();
         }
     }
 }
