@@ -18,7 +18,7 @@ final class NotificationArguments
         return new self($arguments);
     }
 
-    public function arguments(): array
+    public function value(): array
     {
         return $this->arguments;
     }

@@ -12,7 +12,10 @@
         "php": ">=7.4",
         "manelpm10/php-value-objects": "dev-master",
         "phpmailer/phpmailer": "dev-master",
-        "php-di/php-di": "dev-master"
+        "php-di/php-di": "dev-master",
+        "vlucas/phpdotenv": "5.3.x-dev",
+        "monolog/monolog": "2.x-dev",
+        "league/tactician": "2.0.x-dev"
     },
     "autoload": {
         "psr-4": {
