@@ -21,5 +21,3 @@ $router->execute();
 
 $logger = new Logger('default');
 $logger->pushHandler(new StreamHandler(dirname(__DIR__) . '/var/logs/app.log', Logger::DEBUG));
-
-::create();
