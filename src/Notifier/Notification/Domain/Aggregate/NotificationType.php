@@ -9,8 +9,8 @@ use InvalidArgumentException;
 
 final class NotificationType extends StringValueObject
 {
-    private const TELEGRAM_NOTIFICATION_TYPE = 'telegram';
-    private const EMAIL_NOTIFICATION_TYPE = 'email';
+    public const TELEGRAM_NOTIFICATION_TYPE = 'telegram';
+    public const EMAIL_NOTIFICATION_TYPE = 'email';
 
     private const ALLOWED_TYPES = [
         self::TELEGRAM_NOTIFICATION_TYPE,

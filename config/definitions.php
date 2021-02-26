@@ -11,8 +11,12 @@ use League\Tactician\Handler\CommandHandlerMiddleware;
 use League\Tactician\Handler\Mapping\ClassName\Suffix;
 use League\Tactician\Handler\Mapping\MapByNamingConvention;
 use League\Tactician\Handler\Mapping\MethodName\Invoke;
+use Monolog\Formatter\JsonFormatter;
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
 use PHPMailer\PHPMailer\PHPMailer;
 use Psr\Container\ContainerInterface;
+use Psr\Log\LoggerInterface;
 
 $commandBus = [
     CommandBus::class => fn (ContainerInterface $container) =>
@@ -25,7 +29,7 @@ $commandBus = [
     Invoke::class => new Invoke(),
 ];
 
-$mailer = [
+$notifier = [
     PHPMailer::class => new PHPMailer(true),
 ];
 
@@ -33,9 +37,21 @@ $http = [
     Request::class => new Request(),
 ];
 
+$loggin = [
+    LoggerInterface::class => function () {
+        $log = new Logger('default');
+        $stream = new StreamHandler(dirname(__DIR__) . '/var/log/app.log', Logger::WARNING);
+        $stream->setFormatter(new JsonFormatter());
+        $log->pushHandler($stream);
+
+        return $log;
+    },
+];
+
 $sendNotification = [
-    NotifierInterface::class => fn (ContainerInterface $container) =>
-    new PHPMailerNotifierService($container->get(PHPMailer::class)),
+    NotifierInterface::class => function (ContainerInterface $container) {
+        return new PHPMailerNotifierService($container->get(PHPMailer::class), $container->get(LoggerInterface::class));
+    },
     SendNotificationUseCase::class => fn (ContainerInterface $container) =>
     new SendNotificationUseCase($container->get(NotifierInterface::class)),
     SendNotificationController::class => fn (ContainerInterface $container) =>
@@ -46,7 +62,8 @@ $sendNotification = [
 
 $definitions = array_merge(
     $commandBus,
-    $mailer,
+    $notifier,
     $http,
     $sendNotification,
+    $loggin,
 );

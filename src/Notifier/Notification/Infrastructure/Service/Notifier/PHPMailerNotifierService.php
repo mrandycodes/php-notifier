@@ -8,14 +8,21 @@ use App\Notifier\Notification\Domain\Aggregate\Notification;
 use App\Notifier\Notification\Domain\Service\NotifierInterface;
 use Exception;
 use PHPMailer\PHPMailer\PHPMailer;
+use Psr\Log\LoggerInterface;
 
 final class PHPMailerNotifierService implements NotifierInterface
 {
-    private PHPMailer $client;
+    private const ARGUMENT_TO = 'to';
+    private const ARGUMENT_ALIAS = 'alias';
+    private const ARGUMENT_SUBJECT = 'subject';
 
-    public function __construct(PHPMailer $client)
+    private PHPMailer $client;
+    private LoggerInterface $logger;
+
+    public function __construct(PHPMailer $client, LoggerInterface $logger)
     {
         $this->client = $client;
+        $this->logger = $logger;
     }
 
     public function send(Notification $notification): void
@@ -34,16 +41,19 @@ final class PHPMailerNotifierService implements NotifierInterface
             //Recipients
             $arguments = $notification->arguments()->value();
             $this->client->setFrom($_ENV['MAILER_USERNAME'], 'INFO');
-            $this->client->addAddress($arguments['to'], $arguments['alias']);
+            $this->client->addAddress($arguments[self::ARGUMENT_TO], $arguments[self::ARGUMENT_ALIAS]);
 
             //Content
             $this->client->isHTML(true);
-            $this->client->Subject = $arguments['subject'];
-            $this->client->Body    = $notification->message()->value();
+            $this->client->Subject = $arguments[self::ARGUMENT_SUBJECT];
+            $this->client->Body = $notification->message()->value();
 
             $this->client->send();
         } catch (Exception $exception) {
-            throw $exception;
+            $this->logger->error(
+                '<PHPMailer> There was an error when service try to send a notification email',
+                $exception->getTrace()
+            );
         }
     }
 }
