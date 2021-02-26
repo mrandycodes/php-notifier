@@ -4,8 +4,8 @@ require dirname(__DIR__) . '/vendor/autoload.php';
 require dirname(__DIR__) . '/config/definitions.php';
 require dirname(__DIR__) . '/config/routes.php';
 
-use App\Context\SharedKernel\Infrastructure\Routing\Router;
-use App\Context\SharedKernel\Infrastructure\DependencyInjection\DependencyInjectionContainer;
+use App\Notifier\Shared\Infrastructure\Routing\Router;
+use App\Notifier\Shared\Infrastructure\DependencyInjection\DependencyInjectionContainer;
 use Dotenv\Dotenv;
 
 $dotenv = Dotenv::createImmutable(dirname(__DIR__));
