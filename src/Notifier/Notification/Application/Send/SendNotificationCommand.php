@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Notifier\Notification\Application\Send;
 
-use App\Notifier\Shared\Application\Command;
+use App\Shared\Application\Command;
 
 final class SendNotificationCommand extends Command
 {

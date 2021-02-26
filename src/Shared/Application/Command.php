@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Notifier\Shared\Application;
+namespace App\Shared\Application;
 
 abstract class Command
 {

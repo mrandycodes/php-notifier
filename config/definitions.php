@@ -5,7 +5,7 @@ use App\Notifier\Notification\Application\Send\SendNotificationUseCase;
 use App\Notifier\Notification\Domain\Service\NotifierInterface;
 use App\Notifier\Notification\Infrastructure\Service\Notifier\PHPMailerNotifierService;
 use Apps\Notifier\Backend\UI\Controller\SendNotificationController;
-use App\Notifier\Shared\Infrastructure\Http\Request;
+use App\Shared\Infrastructure\Http\Request;
 use League\Tactician\CommandBus;
 use League\Tactician\Handler\CommandHandlerMiddleware;
 use League\Tactician\Handler\Mapping\ClassName\Suffix;

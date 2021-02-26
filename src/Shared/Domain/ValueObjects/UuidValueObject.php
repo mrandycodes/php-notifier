@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Notifier\Shared\Domain\ValueObjects;
+namespace App\Shared\Domain\ValueObjects;
 
 use ValueObjects\Identity\Uuid as IdentityUuid;
 

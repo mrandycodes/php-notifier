@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Notifier\Shared\Infrastructure\DependencyInjection;
+namespace App\Shared\Infrastructure\DependencyInjection;
 
 use DI\ContainerBuilder;
 use Psr\Container\ContainerInterface;

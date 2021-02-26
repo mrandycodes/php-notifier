@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Apps\Notifier\Backend\UI\Controller;
 
-use App\Notifier\Shared\UI\Controller\ApiController;
+use App\Shared\UI\Controller\ApiController;
 use App\Notifier\Notification\Application\Send\SendNotificationCommand;
-use App\Notifier\Shared\Infrastructure\Http\Request;
-use App\Notifier\Shared\Infrastructure\Http\Response;
-use App\Notifier\Shared\Infrastructure\Http\ApiHttpOkResponse;
+use App\Shared\Infrastructure\Http\Request;
+use App\Shared\Infrastructure\Http\Response;
+use App\Shared\Infrastructure\Http\ApiHttpOkResponse;
 use League\Tactician\CommandBus;
 
 final class SendNotificationController extends ApiController

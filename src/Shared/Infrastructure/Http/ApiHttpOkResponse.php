@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Notifier\Shared\Infrastructure\Http;
+namespace App\Shared\Infrastructure\Http;
 
 final class ApiHttpOkResponse extends Response
 {

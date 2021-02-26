@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Notifier\Notification\Domain\Aggregate;
 
-use App\Notifier\Shared\Domain\ValueObjects\StringValueObject;
+use App\Shared\Domain\ValueObjects\StringValueObject;
 use InvalidArgumentException;
 
 final class NotificationType extends StringValueObject

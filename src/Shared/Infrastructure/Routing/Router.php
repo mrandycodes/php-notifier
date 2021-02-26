@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Notifier\Shared\Infrastructure\Routing;
+namespace App\Shared\Infrastructure\Routing;
 
-use App\Notifier\Shared\Infrastructure\Http\ApiHttpBadRequestResponse;
-use App\Notifier\Shared\Infrastructure\Http\Request;
+use App\Shared\Infrastructure\Http\ApiHttpBadRequestResponse;
+use App\Shared\Infrastructure\Http\Request;
 use InvalidArgumentException;
 use Psr\Container\ContainerInterface;
 

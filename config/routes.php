@@ -1,6 +1,6 @@
 <?php
 
-use App\Notifier\Shared\Infrastructure\Routing\Router;
+use App\Shared\Infrastructure\Routing\Router;
 
 $routes = [
     'health' => [

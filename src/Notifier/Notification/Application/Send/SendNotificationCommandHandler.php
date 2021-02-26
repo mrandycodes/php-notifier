@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Notifier\Notification\Application\Send;
 
-use App\Notifier\Shared\Application\Command;
-use App\Notifier\Shared\Application\CommandHandler;
+use App\Shared\Application\Command;
+use App\Shared\Application\CommandHandler;
 
 final class SendNotificationCommandHandler extends CommandHandler
 {
