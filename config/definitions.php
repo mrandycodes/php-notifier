@@ -3,7 +3,7 @@
 use App\Notifier\Notification\Application\Send\SendNotificationCommandHandler;
 use App\Notifier\Notification\Application\Send\SendNotificationUseCase;
 use App\Notifier\Notification\Domain\Service\NotifierInterface;
-use App\Notifier\Notification\Infrastructure\Service\Notifier\EmailNotifierService;
+use App\Notifier\Notification\Infrastructure\Service\Notifier\PHPMailerNotifierService;
 use Apps\Notifier\Backend\UI\Controller\SendNotificationController;
 use App\Notifier\Shared\Infrastructure\Http\Request;
 use League\Tactician\CommandBus;
@@ -35,7 +35,7 @@ $http = [
 
 $sendNotification = [
     NotifierInterface::class => fn (ContainerInterface $container) =>
-    new EmailNotifierService($container->get(PHPMailer::class)),
+    new PHPMailerNotifierService($container->get(PHPMailer::class)),
     SendNotificationUseCase::class => fn (ContainerInterface $container) =>
     new SendNotificationUseCase($container->get(NotifierInterface::class)),
     SendNotificationController::class => fn (ContainerInterface $container) =>

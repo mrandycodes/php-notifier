@@ -9,7 +9,7 @@ use App\Notifier\Notification\Domain\Service\NotifierInterface;
 use Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 
-final class EmailNotifierService implements NotifierInterface
+final class PHPMailerNotifierService implements NotifierInterface
 {
     private PHPMailer $client;
 
