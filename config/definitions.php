@@ -54,7 +54,8 @@ $sendNotification = [
     NotifierInterface::class => function (ContainerInterface $container) {
         return new NotifierService($container->get(NotifierFactory::class));
     },
-    NotifierFactory::class => fn (ContainerInterface $container) => new NotifierFactory($container),
+    NotifierFactory::class => fn (ContainerInterface $container) =>
+    new NotifierFactory($container->get(PHPMailerNotifierService::class)),
     SendNotificationUseCase::class => fn (ContainerInterface $container) =>
     new SendNotificationUseCase($container->get(NotifierInterface::class)),
     SendNotificationController::class => fn (ContainerInterface $container) =>

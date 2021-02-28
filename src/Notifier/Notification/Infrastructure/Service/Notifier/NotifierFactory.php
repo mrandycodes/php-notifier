@@ -13,10 +13,11 @@ final class NotifierFactory
 {
     private array $notifierServices;
 
-    public function __construct(ContainerInterface $container)
-    {
+    public function __construct(
+        PHPMailerNotifierService $mailNotifierService
+    ) {
         $this->notifierServices = [
-            NotificationType::EMAIL_NOTIFICATION_TYPE => $container->get(PHPMailerNotifierService::class),
+            NotificationType::EMAIL_NOTIFICATION_TYPE => $mailNotifierService,
         ];
     }
 
