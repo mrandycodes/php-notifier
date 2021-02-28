@@ -11,6 +11,10 @@ host-entry:
 docker-build:
 	docker-compose build --no-cache
 
+.PHONY: test-unit
+test-unit:
+	docker-compose exec php-fpm ./vendor/bin/phpunit tests	
+
 .PHONY: dev
 dev: host-entry
 	docker-compose up -d --no-build --remove-orphans --force-recreate
