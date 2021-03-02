@@ -32,22 +32,22 @@ final class Notification
         return new self($id, $type, $message, $arguments);
     }
 
-    public function id()
+    public function id(): NotificationId
     {
         return $this->id;
     }
 
-    public function type()
+    public function type(): NotificationType
     {
         return $this->type;
     }
 
-    public function message()
+    public function message(): NotificationMessage
     {
         return $this->message;
     }
 
-    public function arguments()
+    public function arguments(): NotificationArguments
     {
         return $this->arguments;
     }

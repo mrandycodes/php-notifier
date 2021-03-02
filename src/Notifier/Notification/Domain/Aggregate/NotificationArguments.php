@@ -6,20 +6,25 @@ namespace App\Notifier\Notification\Domain\Aggregate;
 
 final class NotificationArguments
 {
-    private array $arguments;
+    private array $value;
 
-    private function __construct(array $arguments)
+    private function __construct(array $value)
     {
-        $this->arguments = $arguments;
+        $this->value = $value;
     }
 
-    public static function create(array $arguments): self
+    public static function create(array $value): self
     {
-        return new self($arguments);
+        return new self($value);
     }
 
     public function value(): array
     {
-        return $this->arguments;
+        return $this->value;
+    }
+
+    public function equals($other)
+    {
+        return get_class($this) === get_class($other) && $this->value === $other->value;
     }
 }
