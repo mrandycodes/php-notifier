@@ -1,0 +1,6 @@
+notifier_backend:
+  suites:
+    notification:
+      paths: [ tests/apps/Notifier/Backend/features ]
+      contexts:
+        - Tests\Notifier\Notification\Infrastructure\Behat\ApiFeatureContext

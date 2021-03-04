@@ -3,6 +3,7 @@ node_modules
 vendor
 /dist
 var
+behat.yml
 
 
 # env files
