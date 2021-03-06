@@ -19,7 +19,7 @@ $notification = [
         return new NotifierService($container->get(NotifierFactory::class));
     },
     NotifierFactory::class => function (ContainerInterface $container) {
-        $mailer = ($_SERVER['APP_ENV'] === 'dev')
+        $mailer = ($_SERVER['APP_ENV'] !== 'prod')
             ? $container->get(FakeMailerNotifierService::class)
             : $container->get(PHPMailerNotifierService::class);
 
