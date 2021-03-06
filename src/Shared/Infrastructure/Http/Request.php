@@ -8,9 +8,9 @@ final class Request
 {
     private $content;
 
-    public function __construct()
+    public function __construct($content)
     {
-        $this->content = file_get_contents('php://input');
+        $this->content = $content;
     }
 
     /** 

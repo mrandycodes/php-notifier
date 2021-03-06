@@ -6,14 +6,13 @@ namespace App\Notifier\Notification\Infrastructure\Service\Notifier;
 
 use App\Notifier\Notification\Domain\Aggregate\NotificationType;
 use App\Notifier\Notification\Domain\Service\NotifierInterface;
-use App\Notifier\Notification\Infrastructure\Service\Notifier\PHPMailerNotifierService;
 
 final class NotifierFactory
 {
     private array $notifierServices;
 
     public function __construct(
-        PHPMailerNotifierService $mailNotifierService
+        NotifierInterface $mailNotifierService
     ) {
         $this->notifierServices = [
             NotificationType::EMAIL_NOTIFICATION_TYPE => $mailNotifierService,
