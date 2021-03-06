@@ -19,6 +19,9 @@ test-unit:
 test-acceptance:
 	@docker-compose exec php-fpm ./vendor/bin/behat -c behat.yml.dist
 
+.PHONY: test
+test: test-unit test-acceptance	
+
 .PHONY: dev
 dev: host-entry
 	docker-compose up -d --no-build --remove-orphans --force-recreate
