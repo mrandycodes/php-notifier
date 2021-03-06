@@ -6,6 +6,7 @@ namespace App\Notifier\Notification\Infrastructure\Service\Notifier;
 
 use App\Notifier\Notification\Domain\Aggregate\NotificationType;
 use App\Notifier\Notification\Domain\Service\NotifierInterface;
+use InvalidArgumentException;
 
 final class NotifierFactory
 {
@@ -19,12 +20,14 @@ final class NotifierFactory
         ];
     }
 
-    public function createFrom(NotificationType $type): ?NotifierInterface
+    public function createFrom(NotificationType $type): NotifierInterface
     {
-        $notifierService =  $this->notifierServices[$type->value()];
+        $notifierService =  $this->notifierServices[$type->value()] ?? null;
 
-        if (empty($notifierService)) {
-            return null;
+        if (!$notifierService) {
+            throw new InvalidArgumentException(
+                sprintf('There is no notifier for notification type <%s>', $type)
+            );
         }
 
         return $notifierService;

@@ -9,11 +9,15 @@ host-entry:
 
 .PHONY: docker-build
 docker-build:
-	docker-compose build --no-cache
+	@docker-compose build --no-cache
 
 .PHONY: test-unit
 test-unit:
-	docker-compose exec php-fpm ./vendor/bin/phpunit tests	
+	@docker-compose exec php-fpm ./vendor/bin/phpunit tests	
+
+.PHONY: test-acceptance
+test-acceptance:
+	@docker-compose exec php-fpm ./vendor/bin/behat -c behat.yml.dist
 
 .PHONY: dev
 dev: host-entry

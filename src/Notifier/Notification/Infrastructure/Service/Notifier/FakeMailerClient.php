@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Notifier\Notification\Infrastructure\Notifier;
+namespace App\Notifier\Notification\Infrastructure\Service\Notifier;
 
 final class FakeMailerClient
 {

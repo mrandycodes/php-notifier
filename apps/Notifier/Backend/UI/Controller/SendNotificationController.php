@@ -6,9 +6,11 @@ namespace Apps\Notifier\Backend\UI\Controller;
 
 use App\Shared\UI\Controller\ApiController;
 use App\Notifier\Notification\Application\Send\SendNotificationCommand;
+use App\Shared\Infrastructure\Http\ApiHttpBadRequestResponse;
 use App\Shared\Infrastructure\Http\Request;
 use App\Shared\Infrastructure\Http\Response;
 use App\Shared\Infrastructure\Http\ApiHttpOkResponse;
+use InvalidArgumentException;
 use League\Tactician\CommandBus;
 
 final class SendNotificationController extends ApiController
@@ -24,13 +26,17 @@ final class SendNotificationController extends ApiController
     {
         $data = json_decode($request->content(), true, 512, JSON_THROW_ON_ERROR);
 
-        $this->commandBus->handle(
-            new SendNotificationCommand(
-                $data['type'],
-                $data['message'],
-                $data['arguments']
-            )
-        );
+        try {
+            $this->commandBus->handle(
+                new SendNotificationCommand(
+                    $data['type'],
+                    $data['message'],
+                    $data['arguments']
+                )
+            );
+        } catch (InvalidArgumentException $exception) {
+            return new ApiHttpBadRequestResponse($exception->getMessage());
+        }
 
         return new ApiHttpOkResponse();
     }

@@ -1,2 +1,11 @@
-imports:
-  - tests/apps/Notifier/Backend/notifier_backend.yml
+default:
+  extensions:
+      Behat\MinkExtension:
+        base_url:  'http://notifier-api'
+        sessions:
+          default:
+            goutte: ~
+  suites:
+    notification:
+      paths: [ tests/apps/Notifier/Backend/features/notification ]
+      contexts: [ Tests\Notifier\Notification\Infrastructure\Behat\ApiFeatureContext ]

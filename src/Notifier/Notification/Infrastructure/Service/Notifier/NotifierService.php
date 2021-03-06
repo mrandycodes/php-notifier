@@ -20,8 +20,6 @@ final class NotifierService implements NotifierInterface
     {
         $notifierService = $this->notifierFactory->createFrom($notification->type());
 
-        if ($notifierService) {
-            $notifierService->send($notification);
-        }
+        $notifierService->send($notification);
     }
 }
